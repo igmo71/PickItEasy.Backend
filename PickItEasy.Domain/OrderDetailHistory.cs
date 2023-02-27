@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace PickItEasy.Domain
 {
-    public class OrderHistory : EntityBase
+    public class OrderDetailHistory : EntityBase
     {
         public DateTime EditDate { get; set; }
 
-        public Guid OrderId { get; set; }
-        public Order? Order { get; set; }
+        public Guid OrderDetailId { get; set; }
+        public OrderDetail? OrderDetail { get; set; }
 
         //public Guid UserId { get; set; }
         //public ApplicationUser User { get; set; }
 
-        public Guid? NewOrderStatusId { get; set; }
-        public OrderStatus? NewOrderStatus { get; set; }
+        public float LastCount { get; set; }
+        public float NewCount { get; set; }
     }
 }

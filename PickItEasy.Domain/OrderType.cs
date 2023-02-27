@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace PickItEasy.Domain
 {
-    public class OrderStatus : EntityBase
+    public class OrderType : EntityBase 
     {
         public string? Name { get; set; }
-
-        public Guid OrderTypeId { get; set; }
-        public OrderType OrderType { get; set; }
     }
 }

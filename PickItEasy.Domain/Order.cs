@@ -16,6 +16,9 @@ namespace PickItEasy.Domain
         public string? Number { get; set; }
         public DateTime Date { get; set; }
 
+        public Guid OrderTypeId { get; set; }
+        public OrderType OrderType { get; set; }
+
         public Guid? OrderStatusId { get; set; }
         public OrderStatus? OrderStatus { get; set; }
 
