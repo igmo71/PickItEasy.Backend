@@ -39,9 +39,9 @@ namespace PickItEasy.WebApi.Middleware
             }
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)code;
-            if(result == string.Empty)
+            if (result == string.Empty)
             {
-                result = JsonSerializer.Serialize(new { ErrorMessage = exception.Message});
+                result = JsonSerializer.Serialize(new { ErrorMessage = exception.Message });
             }
 
             return context.Response.WriteAsync(result);

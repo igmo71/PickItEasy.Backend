@@ -3,11 +3,6 @@ using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using PickItEasy.Application.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PickItEasy.Application.Notes.Queries.Notes.GetNoteList
 {
@@ -16,7 +11,7 @@ namespace PickItEasy.Application.Notes.Queries.Notes.GetNoteList
         private readonly IPickItEasyDbContext _dbContext;
         private readonly IMapper _mapper;
 
-        public GetNoteListQueryHandler(IPickItEasyDbContext dbContext, IMapper mapper) => 
+        public GetNoteListQueryHandler(IPickItEasyDbContext dbContext, IMapper mapper) =>
             (_dbContext, _mapper) = (dbContext, mapper);
 
         public async Task<NoteListVm> Handle(GetNoteListQuery request, CancellationToken cancellationToken)

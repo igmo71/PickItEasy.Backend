@@ -1,12 +1,7 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using PickItEasy.Application.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PickItEasy.Application.Common.Exceptions;
+using PickItEasy.Application.Interfaces;
 using PickItEasy.Domain;
 
 namespace PickItEasy.Application.Notes.Commands.UpdateNote

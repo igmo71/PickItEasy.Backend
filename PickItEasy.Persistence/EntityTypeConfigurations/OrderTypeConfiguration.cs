@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PickItEasy.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PickItEasy.Persistence.EntityTypeConfigurations
 {
@@ -15,7 +10,7 @@ namespace PickItEasy.Persistence.EntityTypeConfigurations
         {
             builder.HasKey(o => o.Id);
             builder.HasIndex(o => o.Id).IsUnique();
-            
+
             builder.HasOne(o => o.OrderStatus).WithMany()
                 .HasForeignKey(o => o.OrderStatusId).HasPrincipalKey(os => os.Id)
                 .OnDelete(DeleteBehavior.SetNull);
@@ -27,7 +22,7 @@ namespace PickItEasy.Persistence.EntityTypeConfigurations
             builder.HasMany(o => o.OrderDetails).WithOne(od => od.Order)
                 .HasForeignKey(od => od.OrderId).HasPrincipalKey(o => o.Id)
                 .OnDelete(DeleteBehavior.Cascade);
-            
+
             builder.Property(o => o.Number).HasMaxLength(36);
         }
     }

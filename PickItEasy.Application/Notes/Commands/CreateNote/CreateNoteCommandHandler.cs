@@ -1,17 +1,12 @@
 ﻿using MediatR;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PickItEasy.Application.Notes.Commands.CreateNote
 {
     public class CreateNoteCommandHandler : IRequestHandler<CreateNoteCommand, Guid>
     {
-        private readonly IPickItEasyDbContext  _dbContext;
+        private readonly IPickItEasyDbContext _dbContext;
 
         public CreateNoteCommandHandler(IPickItEasyDbContext dbContext) => _dbContext = dbContext;
 

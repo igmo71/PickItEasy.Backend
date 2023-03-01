@@ -68,17 +68,17 @@ namespace PickItEasy.WebApi
         private static void InitializeDB(WebApplication app)
         {
             using var scope = app.Services.CreateScope();
-            var srviceProvider =  scope.ServiceProvider;
+            var srviceProvider = scope.ServiceProvider;
             try
             {
                 var dbContext = srviceProvider.GetRequiredService<PickItEasyDbContext>();
                 DbInitializer.Initialize(dbContext);
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
 
                 throw;
-            }            
+            }
         }
     }
 }

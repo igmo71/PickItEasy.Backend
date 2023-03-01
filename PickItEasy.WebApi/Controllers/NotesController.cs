@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using PickItEasy.Application.Notes.Commands.CreateNote;
+using PickItEasy.Application.Notes.Commands.DeleteNote;
+using PickItEasy.Application.Notes.Commands.UpdateNote;
 using PickItEasy.Application.Notes.Queries.Notes.GetNoteDetails;
 using PickItEasy.Application.Notes.Queries.Notes.GetNoteList;
-using PickItEasy.Application.Notes.Commands.CreateNote;
 using PickItEasy.WebApi.Models;
-using PickItEasy.Application.Notes.Commands.UpdateNote;
-using PickItEasy.Application.Notes.Commands.DeleteNote;
 
 namespace PickItEasy.WebApi.Controllers
 {

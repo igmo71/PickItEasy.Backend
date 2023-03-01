@@ -1,10 +1,5 @@
 ﻿using FluentValidation;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PickItEasy.Application.Common.Behaviors
 {
@@ -18,12 +13,12 @@ namespace PickItEasy.Application.Common.Behaviors
         {
             var validationContext = new ValidationContext<TRequest>(request);
             var validationFailures = _validators
-                .Select(validator =>  validator.Validate(validationContext))
+                .Select(validator => validator.Validate(validationContext))
                 .SelectMany(validationResult => validationResult.Errors)
                 .Where(validationFailure => validationFailure != null)
                 .ToList();
 
-            if(validationFailures.Any())
+            if (validationFailures.Any())
             {
                 throw new ValidationException(validationFailures);
             }
