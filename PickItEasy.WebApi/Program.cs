@@ -2,6 +2,7 @@ using PickItEasy.Application;
 using PickItEasy.Application.Common.Mappings;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Persistence;
+using PickItEasy.WebApi.Middleware;
 using System.Reflection;
 
 namespace PickItEasy.WebApi
@@ -49,6 +50,8 @@ namespace PickItEasy.WebApi
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseCustomExceptionHandler();
 
             app.UseRouting(); // ???
             app.UseHttpsRedirection();
