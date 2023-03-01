@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace PickItEasy.Persistence
 {
-    public class PickItEasyDbConterxt : DbContext, IPickItEasyDbContext
+    public class PickItEasyDbContext : DbContext, IPickItEasyDbContext
     {
-        public PickItEasyDbConterxt(DbContextOptions<PickItEasyDbConterxt> options) : base(options) { }
+        public PickItEasyDbContext(DbContextOptions<PickItEasyDbContext> options) : base(options) { }
 
         public DbSet<Note> Notes { get; set; }
 
