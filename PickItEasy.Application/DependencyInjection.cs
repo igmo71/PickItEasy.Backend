@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
+using PickItEasy.Application.Common.Behaviors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +21,9 @@ namespace PickItEasy.Application
             {
                 config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
             });
+
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
             return services;
         }
