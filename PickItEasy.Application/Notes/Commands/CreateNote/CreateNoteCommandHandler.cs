@@ -19,12 +19,12 @@ namespace PickItEasy.Application.Notes.Commands.CreateNote
         {
             var note = new Note
             {
-                CreationDate = DateTime.Now,
-                Details = request.Details,
-                EditDate = null,
                 Id = Guid.NewGuid(),
+                UserId = request.UserId,
                 Title = request.Title,
-                UserId = request.UserId
+                Details = request.Details,
+                CreationDate = DateTime.Now,
+                EditDate = null
             };
 
             await _dbContext.Notes.AddAsync(note, cancellationToken);

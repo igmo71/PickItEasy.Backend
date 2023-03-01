@@ -14,9 +14,9 @@ namespace PickItEasy.Application
         {
             //services.AddMediatR(Assembly.GetExecutingAssembly();
 
-            services.AddMediatR(cfg =>
+            services.AddMediatR(config =>
             {
-                cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+                config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
             });
 
             return services;
