@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PickItEasy.Application.Notes.Commands.CreateNote;
 using PickItEasy.Application.Notes.Commands.DeleteNote;
@@ -17,6 +18,7 @@ namespace PickItEasy.WebApi.Controllers
         public NotesController(IMapper mapper) => _mapper = mapper;
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<NoteListVm>> GetAll()
         {
             var getNoteListQuery = new GetNoteListQuery
@@ -28,6 +30,7 @@ namespace PickItEasy.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<NoteDetailsVm>> Get(Guid id)
         {
             var getNoteDetailsQuery = new GetNoteDetailsQuery
@@ -40,6 +43,7 @@ namespace PickItEasy.WebApi.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateNoteDto crateNoteDto)
         {
             var createNoteCommand = _mapper.Map<CreateNoteCommand>(crateNoteDto);
@@ -50,6 +54,7 @@ namespace PickItEasy.WebApi.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public async Task<IActionResult> Update([FromBody] UpdateNoteDto updateNoteDto)
         {
             var updateNoteCommand = _mapper.Map<UpdateNoteCommand>(updateNoteDto);
@@ -59,6 +64,7 @@ namespace PickItEasy.WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> Delete(Guid id)
         {
             var deleteNoteCommand = new DeleteNoteCommand

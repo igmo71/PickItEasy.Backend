@@ -4,6 +4,7 @@ using PickItEasy.Application.Interfaces;
 using PickItEasy.Persistence;
 using PickItEasy.WebApi.Middleware;
 using System.Reflection;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace PickItEasy.WebApi
 {
@@ -34,6 +35,18 @@ namespace PickItEasy.WebApi
                 });
             });
 
+            builder.Services.AddAuthentication(config =>
+            {
+                config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+                .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+                {
+                    options.Authority = "https://localhost:7109"; // https://localhost:32780/
+                    options.Audience = "PickItEasyWebApi";
+                    options.RequireHttpsMetadata = false;
+                });
+
             builder.Services.AddControllers();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -56,6 +69,9 @@ namespace PickItEasy.WebApi
             app.UseRouting(); // ???
             app.UseHttpsRedirection();
             app.UseCors("AllowAll");
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseAuthorization();
 
