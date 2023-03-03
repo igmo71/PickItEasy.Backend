@@ -2,13 +2,7 @@
 using PickItEasy.Application.Common.Exceptions;
 using PickItEasy.Application.Notes.Commands.CreateNote;
 using PickItEasy.Application.Notes.Commands.DeleteNote;
-using PickItEasy.Application.Notes.Queries.Notes.GetNoteDetails;
 using PickItEasy.UnitTests.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PickItEasy.UnitTests.Notes.Commands
 {

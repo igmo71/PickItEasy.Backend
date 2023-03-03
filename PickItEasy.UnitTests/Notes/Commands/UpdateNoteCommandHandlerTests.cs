@@ -2,11 +2,6 @@
 using PickItEasy.Application.Common.Exceptions;
 using PickItEasy.Application.Notes.Commands.UpdateNote;
 using PickItEasy.UnitTests.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PickItEasy.UnitTests.Notes.Commands
 {

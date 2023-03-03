@@ -1,10 +1,10 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using PickItEasy.Application;
 using PickItEasy.Application.Common.Mappings;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Persistence;
 using PickItEasy.WebApi.Middleware;
 using System.Reflection;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace PickItEasy.WebApi
 {

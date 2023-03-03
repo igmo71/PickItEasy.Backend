@@ -3,11 +3,6 @@ using PickItEasy.Application.Notes.Queries.Notes.GetNoteList;
 using PickItEasy.Persistence;
 using PickItEasy.UnitTests.Common;
 using Shouldly;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PickItEasy.UnitTests.Notes.Queries
 {

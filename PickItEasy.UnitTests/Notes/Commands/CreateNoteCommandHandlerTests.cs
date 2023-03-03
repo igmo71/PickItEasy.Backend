@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PickItEasy.Application.Notes.Commands.CreateNote;
 using PickItEasy.UnitTests.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PickItEasy.UnitTests.Notes.Commands
 {
