@@ -1,12 +1,15 @@
 ﻿using AutoMapper;
 using PickItEasy.Application.Common.Mappings;
 using PickItEasy.Application.Notes.Commands.CreateNote;
+using System.ComponentModel.DataAnnotations;
 
 namespace PickItEasy.WebApi.Models
 {
     public class CreateNoteDto : IMapWith<CreateNoteCommand>
     {
-        public string? Title { get; set; }
+        [Required]
+        public string Title { get; set; } = null!;
+
         public string? Details { get; set; }
 
         public void Mapping(Profile profile)
