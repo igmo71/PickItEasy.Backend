@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Logging;
 using PickItEasy.Application;
 using PickItEasy.Application.Common.Mappings;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Persistence;
 using PickItEasy.WebApi.Middleware;
+using PickItEasy.WebApi.Services;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
 
@@ -27,6 +29,7 @@ namespace PickItEasy.WebApi
 
             builder.Services.AddApplication();
             builder.Services.AddPersistence(builder.Configuration);
+            builder.Services.AddControllers();
 
             builder.Services.AddCors(options =>
             {
@@ -43,25 +46,25 @@ namespace PickItEasy.WebApi
                 config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-                .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+                .AddJwtBearer("Bearer", options =>
                 {
-                    options.Authority = "https://localhost:7109"; // https://localhost:32780/
+                    //options.Authority = "https://localhost:32770"; // is in Docker Identity server run
+                    //options.Authority = "https://localhost:7109"; // is in https Identity server run 
+                    options.Authority = "https://localhost:44323/"; // is in IIS express Identity server run
                     options.Audience = "PickItEasyWebApi";
                     options.RequireHttpsMetadata = false;
                 });
 
-            builder.Services.AddControllers();
-
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
+            //builder.Services.AddEndpointsApiExplorer();
 
             builder.Services.AddVersionedApiExplorer(options => options.GroupNameFormat = "'v'VVV");
-
             builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
-
             builder.Services.AddSwaggerGen();
-
             builder.Services.AddApiVersioning();
+
+            builder.Services.AddSingleton<ICurrentUserService, CurrentUserService>();
+            builder.Services.AddHttpContextAccessor();
 
             var app = builder.Build();
 
@@ -79,7 +82,7 @@ namespace PickItEasy.WebApi
                         config.SwaggerEndpoint(
                             $"/swagger/{apiVersionDescriptions.GroupName}/swagger.json",
                             apiVersionDescriptions.GroupName.ToUpperInvariant());
-                        config.RoutePrefix = string.Empty;
+                        //config.RoutePrefix = string.Empty;
                     }
                 });
             }
@@ -94,9 +97,6 @@ namespace PickItEasy.WebApi
             app.UseAuthorization();
 
             app.UseApiVersioning();
-
-            app.UseAuthorization();
-
 
             app.MapControllers();
 
