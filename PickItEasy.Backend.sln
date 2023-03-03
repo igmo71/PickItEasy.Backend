@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PickItEasy.Application", "P
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PickItEasy.Persistence", "PickItEasy.Persistence\PickItEasy.Persistence.csproj", "{E9EB500E-713D-4259-85F8-91D0CCB7C46C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PickItEasy.WebApi", "PickItEasy.WebApi\PickItEasy.WebApi.csproj", "{BED53546-397D-4E96-AC36-6A1219F3FE9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PickItEasy.WebApi", "PickItEasy.WebApi\PickItEasy.WebApi.csproj", "{BED53546-397D-4E96-AC36-6A1219F3FE9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PickItEasy.UnitTests", "PickItEasy.UnitTests\PickItEasy.UnitTests.csproj", "{2D428960-BD83-491A-ABD5-EC6B20C25360}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{BED53546-397D-4E96-AC36-6A1219F3FE9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BED53546-397D-4E96-AC36-6A1219F3FE9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BED53546-397D-4E96-AC36-6A1219F3FE9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D428960-BD83-491A-ABD5-EC6B20C25360}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D428960-BD83-491A-ABD5-EC6B20C25360}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D428960-BD83-491A-ABD5-EC6B20C25360}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D428960-BD83-491A-ABD5-EC6B20C25360}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 		{71D38922-4C20-40AF-8E08-27A4E50769E0} = {BEB151AD-6C6A-47D7-AF81-BC0BFF28B7D8}
 		{E9EB500E-713D-4259-85F8-91D0CCB7C46C} = {E3B94E63-ADEE-4A3F-9EF5-6CD62BF6FF68}
 		{BED53546-397D-4E96-AC36-6A1219F3FE9D} = {59F2A6D1-6B47-466F-AB0E-DB802EF1968F}
+		{2D428960-BD83-491A-ABD5-EC6B20C25360} = {7CD40615-CFFD-4DCE-881D-6491D87034A0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AD2E2CB2-D8BC-4CE7-92DD-648E1EB47FF8}

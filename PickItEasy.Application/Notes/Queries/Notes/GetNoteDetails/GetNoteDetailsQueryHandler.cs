@@ -7,12 +7,12 @@ using PickItEasy.Domain;
 
 namespace PickItEasy.Application.Notes.Queries.Notes.GetNoteDetails
 {
-    public class GetNoteDetailsHandlert : IRequestHandler<GetNoteDetailsQuery, NoteDetailsVm>
+    public class GetNoteDetailsQueryHandler : IRequestHandler<GetNoteDetailsQuery, NoteDetailsVm>
     {
         private readonly IPickItEasyDbContext _dbContext;
         private readonly IMapper _mapper;
 
-        public GetNoteDetailsHandlert(IPickItEasyDbContext dbContext, IMapper mapper) =>
+        public GetNoteDetailsQueryHandler(IPickItEasyDbContext dbContext, IMapper mapper) =>
             (_dbContext, _mapper) = (dbContext, mapper);
 
         public async Task<NoteDetailsVm> Handle(GetNoteDetailsQuery request, CancellationToken cancellationToken)
