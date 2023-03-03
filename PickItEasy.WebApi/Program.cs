@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.Extensions.Options;
 using PickItEasy.Application;
 using PickItEasy.Application.Common.Mappings;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Persistence;
 using PickItEasy.WebApi.Middleware;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
 
 namespace PickItEasy.WebApi
@@ -51,12 +54,14 @@ namespace PickItEasy.WebApi
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen(config =>
-            {
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                config.IncludeXmlComments(xmlPath);
-            });
+
+            builder.Services.AddVersionedApiExplorer(options => options.GroupNameFormat = "'v'VVV");
+
+            builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+
+            builder.Services.AddSwaggerGen();
+
+            builder.Services.AddApiVersioning();
 
             var app = builder.Build();
 
@@ -66,7 +71,17 @@ namespace PickItEasy.WebApi
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwaggerUI(config =>
+                {
+                    var apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+                    foreach (var apiVersionDescriptions in apiVersionDescriptionProvider.ApiVersionDescriptions)
+                    {
+                        config.SwaggerEndpoint(
+                            $"/swagger/{apiVersionDescriptions.GroupName}/swagger.json",
+                            apiVersionDescriptions.GroupName.ToUpperInvariant());
+                        config.RoutePrefix = string.Empty;
+                    }
+                });
             }
 
             app.UseCustomExceptionHandler();
@@ -77,6 +92,8 @@ namespace PickItEasy.WebApi
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseApiVersioning();
 
             app.UseAuthorization();
 
