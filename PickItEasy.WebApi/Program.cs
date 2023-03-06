@@ -8,6 +8,7 @@ using PickItEasy.Application.Interfaces;
 using PickItEasy.Persistence;
 using PickItEasy.WebApi.Middleware;
 using PickItEasy.WebApi.Services;
+using Serilog;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
 
@@ -18,6 +19,18 @@ namespace PickItEasy.WebApi
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            //var logger = new LoggerConfiguration()
+            //    .MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Information)
+            //    .WriteTo.File("Log/PickItEasyWebApi-.log", rollingInterval: RollingInterval.Day)
+            //    .CreateLogger();
+
+            //builder.Logging.ClearProviders();
+            //builder.Logging.AddSerilog(logger);
+
+            builder.Host.UseSerilog((ctx, lc) => lc
+                .MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Information)
+                .WriteTo.File("Log/PickItEasyWebApi-.log", rollingInterval: RollingInterval.Day));
 
             // Add services to the container.
 
@@ -48,9 +61,9 @@ namespace PickItEasy.WebApi
             })
                 .AddJwtBearer("Bearer", options =>
                 {
-                    //options.Authority = "https://localhost:32770"; // is in Docker Identity server run
-                    //options.Authority = "https://localhost:7109"; // is in https Identity server run 
-                    options.Authority = "https://localhost:44323/"; // is in IIS express Identity server run
+                    //options.Authority = "https://localhost:32770"; // in Docker Identity server run
+                    //options.Authority = "https://localhost:7109"; // in https Identity server run 
+                    options.Authority = "https://localhost:44323/"; // in IIS express Identity server run
                     options.Audience = "PickItEasyWebApi";
                     options.RequireHttpsMetadata = false;
                 });
@@ -87,6 +100,8 @@ namespace PickItEasy.WebApi
                 });
             }
 
+             //app.UseSerilogRequestLogging(); // TODO: ???
+
             app.UseCustomExceptionHandler();
 
             app.UseRouting(); // ???
@@ -114,7 +129,7 @@ namespace PickItEasy.WebApi
             }
             catch (Exception ex)
             {
-
+                Log.Fatal(ex, "Error while app initialization");
                 throw;
             }
         }

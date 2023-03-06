@@ -14,8 +14,8 @@ namespace PickItEasy.WebApi.Services
         {
             get
             {
-                var id = _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
-                return string.IsNullOrEmpty(id) ? Guid.Empty : Guid.Parse(id);
+                var userId = _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
+                return string.IsNullOrEmpty(userId) ? Guid.Empty : Guid.Parse(userId);
             }
         }
     }

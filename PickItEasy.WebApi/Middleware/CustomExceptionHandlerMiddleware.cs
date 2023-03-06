@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using PickItEasy.Application.Common.Exceptions;
+using Serilog;
 using System.Net;
 using System.Text.Json;
 
@@ -43,6 +44,9 @@ namespace PickItEasy.WebApi.Middleware
             {
                 result = JsonSerializer.Serialize(new { ErrorMessage = exception.Message });
             }
+
+
+            Log.Error(exception, "[{result}]", result);
 
             return context.Response.WriteAsync(result);
         }
